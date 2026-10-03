@@ -1,0 +1,2552 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#06070c" />
+
+<title>Syhrllm - Vibe Coder &amp; Web Developer</title>
+<meta name="description" content="Syhrllm — Vibe Coder yang membangun website, aplikasi, eksperimen UI, dan project berbantuan AI. Portfolio, project, dan eksperimen web development." />
+<meta name="author" content="Syhrllm" />
+<meta name="keywords" content="Syhrllm, Vibe Coder, Web Developer, AI Integration, Portfolio, Frontend Developer, UI Enthusiast" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Syhrllm - Vibe Coder &amp; Web Developer" />
+<meta property="og:description" content="A Vibe Coder who turns random ideas into things that somehow work." />
+<meta property="og:site_name" content="Syhrllm" />
+<meta property="og:locale" content="id_ID" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Syhrllm - Vibe Coder &amp; Web Developer" />
+<meta name="twitter:description" content="A Vibe Coder who turns random ideas into things that somehow work." />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128187;</text></svg>" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'ui-monospace', 'monospace']
+        }
+      }
+    }
+  };
+</script>
+
+<!-- Font Awesome (brand & official icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@0.441.0/dist/umd/lucide.min.js"></script>
+
+<style>
+  /* ============ THEME TOKENS ============ */
+  :root {
+    --bg: #f4f5fb;
+    --bg-2: #ffffff;
+    --surface: rgba(255, 255, 255, 0.72);
+    --surface-solid: #ffffff;
+    --border: rgba(15, 23, 42, 0.10);
+    --border-strong: rgba(15, 23, 42, 0.18);
+    --text: #0b1220;
+    --muted: #5a6478;
+    --accent1: #6d28d9;
+    --accent2: #0891b2;
+    --accent3: #db2777;
+    --glow: rgba(109, 40, 217, 0.20);
+    --grid: rgba(15, 23, 42, 0.055);
+    --code-bg: #0d0f18;
+    --code-text: #d7dcf0;
+    --shadow: 0 10px 40px -12px rgba(15, 23, 42, 0.18);
+  }
+
+  html.dark {
+    --bg: #06070c;
+    --bg-2: #0a0c14;
+    --surface: rgba(18, 20, 30, 0.58);
+    --surface-solid: #0d0f18;
+    --border: rgba(148, 163, 184, 0.14);
+    --border-strong: rgba(148, 163, 184, 0.26);
+    --text: #e6e9f2;
+    --muted: #98a2ba;
+    --accent1: #a78bfa;
+    --accent2: #22d3ee;
+    --accent3: #f472b6;
+    --glow: rgba(167, 139, 250, 0.24);
+    --grid: rgba(148, 163, 184, 0.075);
+    --code-bg: #080a11;
+    --code-text: #cfd6ea;
+    --shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.75);
+  }
+
+  * { -webkit-tap-highlight-color: transparent; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    transition: background-color .35s ease, color .35s ease;
+  }
+
+  section[id] { scroll-margin-top: 88px; }
+
+  /* ============ BACKGROUND ============ */
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, #000 30%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, #000 30%, transparent 78%);
+  }
+  .bg-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    background:
+      radial-gradient(600px circle at 12% 6%, var(--glow), transparent 62%),
+      radial-gradient(520px circle at 88% 18%, rgba(34, 211, 238, 0.13), transparent 62%),
+      radial-gradient(700px circle at 50% 100%, rgba(244, 114, 182, 0.09), transparent 65%);
+  }
+
+  /* ============ UTILITIES ============ */
+  .glass {
+    background: var(--surface);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid var(--border);
+  }
+  .card {
+    background: var(--surface);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: 1.15rem;
+    transition: transform .3s cubic-bezier(.2,.7,.3,1), border-color .3s ease, box-shadow .3s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow);
+  }
+  .muted { color: var(--muted); }
+
+  .grad-text {
+    background: linear-gradient(100deg, var(--accent1), var(--accent2) 45%, var(--accent3) 95%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradMove 7s ease infinite;
+  }
+  @keyframes gradMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .divider-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+  }
+
+  /* ============ BUTTONS ============ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    padding: .72rem 1.25rem;
+    border-radius: .85rem;
+    font-weight: 600;
+    font-size: .875rem;
+    line-height: 1;
+    min-height: 44px;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease, opacity .2s ease;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn-primary {
+    color: #fff;
+    background: linear-gradient(110deg, #7c3aed, #6d28d9 40%, #0891b2);
+    background-size: 200% 100%;
+    box-shadow: 0 8px 26px -10px var(--glow);
+  }
+  .btn-primary:hover {
+    background-position: 100% 0;
+    box-shadow: 0 12px 34px -10px var(--glow);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--text);
+  }
+  .btn-ghost:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+  .btn:disabled, .btn[aria-disabled="true"] {
+    opacity: .42;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* ============ NAV ============ */
+  .nav-link {
+    position: relative;
+    padding: .5rem .75rem;
+    border-radius: .6rem;
+    font-size: .875rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color .25s ease, background .25s ease;
+  }
+  .nav-link:hover { color: var(--text); background: var(--surface); }
+  .nav-link.nav-active { color: var(--text); }
+  .nav-link.nav-active::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  }
+
+  #navbar { transition: background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease; }
+  #navbar.scrolled {
+    background: var(--surface);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 30px -20px rgba(0,0,0,.6);
+  }
+
+  /* Mobile drawer */
+  #mobileMenu {
+    transform: translateX(100%);
+    transition: transform .38s cubic-bezier(.22,.8,.28,1);
+  }
+  #mobileMenu.open { transform: translateX(0); }
+  #menuOverlay { opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+  #menuOverlay.open { opacity: 1; pointer-events: auto; }
+
+  /* ============ SCROLL PROGRESS ============ */
+  #scrollProgress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    z-index: 90;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+    box-shadow: 0 0 14px var(--glow);
+    transition: width .1s linear;
+  }
+
+  /* ============ CURSOR ============ */
+  #cursorGlow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    background: radial-gradient(circle, var(--glow), transparent 68%);
+    transform: translate(-50%, -50%);
+    transition: opacity .4s ease;
+    will-change: transform;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #cursorGlow { opacity: .85; }
+  }
+
+  /* ============ TERMINAL ============ */
+  .terminal {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--code-text);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .7rem .9rem;
+    border-bottom: 1px solid rgba(148,163,184,.14);
+    background: rgba(148,163,184,.05);
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .term-body { padding: 1rem 1.1rem; font-size: .8rem; line-height: 1.85; }
+  .term-prompt { color: #22d3ee; }
+  .term-cmd { color: #e6e9f2; }
+  .term-out { color: #9aa4bb; }
+  .term-ok { color: #4ade80; }
+
+  .caret {
+    display: inline-block;
+    width: 8px; height: 1em;
+    background: #22d3ee;
+    vertical-align: -2px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+
+  /* ============ TYPING ============ */
+  .type-caret {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    margin-left: 3px;
+    vertical-align: -0.12em;
+    background: linear-gradient(180deg, var(--accent1), var(--accent2));
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ============ REVEAL ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1);
+    will-change: opacity, transform;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal-scale { opacity: 0; transform: scale(.95); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.3,1); }
+  .reveal-scale.in { opacity: 1; transform: none; }
+
+  /* ============ FLOATING ============ */
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .floaty { animation: floaty 6s ease-in-out infinite; }
+  .floaty-slow { animation: floaty 8.5s ease-in-out infinite; }
+  .floaty-delay { animation: floaty 7.2s ease-in-out infinite; animation-delay: -2s; }
+
+  @keyframes pulseRing {
+    0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, .45); }
+    70% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+  }
+  .pulse-dot { animation: pulseRing 2s infinite; }
+
+  /* ============ SKILL BAR ============ */
+  .skill-bar {
+    height: 7px;
+    border-radius: 99px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    transition: width 1.4s cubic-bezier(.2,.8,.25,1);
+    box-shadow: 0 0 12px -2px var(--glow);
+  }
+
+  /* ============ FLOW ============ */
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .55rem .95rem;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: .78rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    transition: all .35s ease;
+    white-space: nowrap;
+  }
+  .flow-step.active {
+    color: #fff;
+    border-color: transparent;
+    background: linear-gradient(110deg, #7c3aed, #0891b2);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 26px -10px var(--glow);
+  }
+  .flow-arrow { color: var(--muted); opacity: .5; font-size: .8rem; }
+
+  /* ============ TIMELINE ============ */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent1), var(--accent2), transparent);
+    opacity: .45;
+  }
+  @media (min-width: 768px) {
+    .timeline::before { left: 50%; transform: translateX(-50%); }
+  }
+  .tl-dot {
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent1);
+    box-shadow: 0 0 0 4px var(--glow);
+  }
+  @media (min-width: 768px) {
+    .tl-dot { left: 50%; transform: translateX(-50%); }
+  }
+
+  /* ============ TOAST ============ */
+  #toastWrap {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 120;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    max-width: calc(100vw - 2rem);
+    pointer-events: none;
+  }
+  .toast {
+    display: flex;
+    align-items: flex-start;
+    gap: .7rem;
+    min-width: 240px;
+    max-width: 360px;
+    padding: .85rem 1rem;
+    border-radius: .85rem;
+    background: var(--surface-solid);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow);
+    transform: translateX(120%);
+    opacity: 0;
+    transition: transform .4s cubic-bezier(.2,.8,.3,1), opacity .35s ease;
+    pointer-events: auto;
+  }
+  .toast.show { transform: none; opacity: 1; }
+  .toast.hide { transform: translateX(120%); opacity: 0; }
+
+  /* ============ FORM ============ */
+  .field {
+    width: 100%;
+    padding: .8rem 1rem;
+    border-radius: .8rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: .9rem;
+    transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+    min-height: 46px;
+  }
+  .field::placeholder { color: var(--muted); opacity: .7; }
+  .field:focus {
+    outline: none;
+    border-color: var(--accent1);
+    box-shadow: 0 0 0 3px var(--glow);
+  }
+  .field.error { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,.18); }
+  .err-msg { color: #ef4444; font-size: .74rem; margin-top: .3rem; min-height: 1rem; display: block; }
+
+  /* ============ LOADER ============ */
+  #loader {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.1rem;
+    background: var(--bg);
+    transition: opacity .55s ease, visibility .55s ease;
+  }
+  #loader.hide { opacity: 0; visibility: hidden; }
+  .loader-ring {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent1);
+    border-right-color: var(--accent2);
+    animation: spin .85s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ============ MISC ============ */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .22rem .6rem;
+    border-radius: 99px;
+    font-size: .68rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--accent1), var(--accent2));
+    border-radius: 99px;
+    border: 3px solid var(--bg);
+  }
+
+  ::selection { background: var(--accent1); color: #fff; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent2);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- ================= LOADER ================= -->
+<div id="loader" role="status" aria-live="polite" aria-label="Memuat halaman">
+  <div class="loader-ring" aria-hidden="true"></div>
+  <p class="font-mono text-xs tracking-widest uppercase" style="color:var(--muted)">initializing&nbsp;syhrllm<span class="caret" style="height:.7em"></span></p>
+</div>
+
+<!-- ================= BACKGROUND ================= -->
+<div class="bg-glow" aria-hidden="true"></div>
+<div class="bg-layer" aria-hidden="true"></div>
+<div id="cursorGlow" aria-hidden="true"></div>
+
+<!-- ================= SCROLL PROGRESS ================= -->
+<div id="scrollProgress" role="progressbar" aria-label="Progres halaman" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<!-- ================= NAVBAR ================= -->
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Navigasi utama">
+    <div class="flex items-center justify-between h-16 md:h-[68px]">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2.5 group shrink-0" aria-label="Syhrllm - kembali ke atas">
+        <span class="relative grid place-items-center w-9 h-9 rounded-xl text-white font-black text-sm"
+              style="background:linear-gradient(130deg,#7c3aed,#0891b2);box-shadow:0 8px 22px -10px var(--glow)">
+          S
+        </span>
+        <span class="font-mono font-bold tracking-tight text-base sm:text-lg">
+          Syhrllm<span class="grad-text">.</span>
+        </span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden lg:flex items-center gap-0.5" id="desktopNav">
+        <a href="#home" data-nav class="nav-link">Home</a>
+        <a href="#about" data-nav class="nav-link">About</a>
+        <a href="#skills" data-nav class="nav-link">Skills</a>
+        <a href="#experience" data-nav class="nav-link">Experience</a>
+        <a href="#contact" data-nav class="nav-link">Contact</a>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" type="button" class="grid place-items-center w-10 h-10 rounded-xl glass transition hover:scale-105"
+                aria-label="Ganti tema terang atau gelap" title="Ganti tema">
+          <i data-lucide="moon" class="w-[18px] h-[18px]" id="themeIcon"></i>
+        </button>
+
+        <a href="#contact" class="hidden sm:inline-flex btn btn-primary !py-2.5 !px-4 text-xs">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          Let's Talk
+        </a>
+
+        <button id="menuToggle" type="button" class="lg:hidden grid place-items-center w-10 h-10 rounded-xl glass"
+                aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu">
+          <i data-lucide="menu" class="w-[18px] h-[18px]"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile overlay -->
+<div id="menuOverlay" class="fixed inset-0 z-[55] bg-black/60 backdrop-blur-sm lg:hidden" aria-hidden="true"></div>
+
+<!-- Mobile drawer -->
+<aside id="mobileMenu" class="fixed top-0 right-0 bottom-0 z-[60] w-[82%] max-w-[320px] lg:hidden flex flex-col"
+       style="background:var(--surface-solid);border-left:1px solid var(--border)"
+       role="dialog" aria-modal="true" aria-label="Menu navigasi mobile">
+
+  <div class="flex items-center justify-between px-5 h-16" style="border-bottom:1px solid var(--border)">
+    <span class="font-mono font-bold">Syhrllm<span class="grad-text">.</span></span>
+    <button id="menuClose" type="button" class="grid place-items-center w-9 h-9 rounded-lg glass" aria-label="Tutup menu">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+  </div>
+
+  <nav class="flex-1 overflow-y-auto px-4 py-5 flex flex-col gap-1" aria-label="Navigasi mobile">
+    <a href="#home" data-nav data-mobile-link class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium hover:bg-white/5 transition" style="color:var(--muted)">
+      <i data-lucide="home" class="w-4 h-4"></i> Home
+    </a>
+    <a href="#about" data-nav data-mobile-link class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium hover:bg-white/5 transition" style="color:var(--muted)">
+      <i data-lucide="user-round" class="w-4 h-4"></i> About
+    </a>
+    <a href="#skills" data-nav data-mobile-link class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium hover:bg-white/5 transition" style="color:var(--muted)">
+      <i data-lucide="layers" class="w-4 h-4"></i> Skills
+    </a>
+    <a href="#experience" data-nav data-mobile-link class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium hover:bg-white/5 transition" style="color:var(--muted)">
+      <i data-lucide="route" class="w-4 h-4"></i> Experience
+    </a>
+    <a href="#contact" data-nav data-mobile-link class="flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium hover:bg-white/5 transition" style="color:var(--muted)">
+      <i data-lucide="mail" class="w-4 h-4"></i> Contact
+    </a>
+  </nav>
+
+  <div class="p-4" style="border-top:1px solid var(--border)">
+    <a href="#contact" data-mobile-link class="btn btn-primary w-full">
+      <i data-lucide="send" class="w-4 h-4"></i> Let's Talk
+    </a>
+  </div>
+</aside>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section id="home" class="relative pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
+
+      <!-- LEFT -->
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass mb-6">
+          <span class="w-2 h-2 rounded-full bg-green-400 pulse-dot" aria-hidden="true"></span>
+          <span class="font-mono text-[11px] tracking-wide" style="color:var(--muted)">available for collaboration</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.2rem] font-black leading-[1.05] tracking-tight">
+          Hi, I'm <span class="grad-text">Syhrllm</span>.
+        </h1>
+
+        <p class="mt-5 text-lg sm:text-xl font-semibold" style="color:var(--text)">
+          A Vibe Coder who turns random ideas into things that somehow work.
+        </p>
+
+        <div class="mt-4 flex items-center gap-2 font-mono text-sm sm:text-base" style="color:var(--muted)">
+          <i data-lucide="terminal" class="w-4 h-4 shrink-0" style="color:var(--accent2)"></i>
+          <span class="truncate">
+            <span id="typedRole">Vibe Coder</span><span class="type-caret" aria-hidden="true"></span>
+          </span>
+        </div>
+
+        <p class="mt-6 text-sm sm:text-base leading-relaxed max-w-xl" style="color:var(--muted)">
+          Saya suka membuat website, mencoba teknologi baru, memperbaiki bug yang entah dari mana datangnya,
+          lalu membuat bug baru karena penasaran.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#skills" class="btn btn-primary">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+            Lihat Skill Saya
+          </a>
+          <a href="#contact" class="btn btn-ghost">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            Let's Talk
+          </a>
+        </div>
+
+        <div class="mt-4 flex flex-wrap gap-3">
+          <button type="button" id="downloadCvBtn" class="btn btn-ghost !text-xs !py-2.5"
+                  aria-label="Download CV Syhrllm">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            Download CV
+          </button>
+          <button type="button" id="heroCopyEmail" class="btn btn-ghost !text-xs !py-2.5"
+                  aria-label="Salin alamat email">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            Copy Email
+          </button>
+        </div>
+
+        <!-- Quick stats strip -->
+        <div class="mt-9 grid grid-cols-3 gap-3 max-w-md">
+          <div class="text-center sm:text-left">
+            <div class="font-mono text-xl sm:text-2xl font-bold grad-text" data-count="10" data-suffix="+">0</div>
+            <div class="text-[10px] sm:text-[11px] uppercase tracking-wider mt-0.5" style="color:var(--muted)">Projects</div>
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="font-mono text-xl sm:text-2xl font-bold grad-text" data-count="18" data-suffix="+">0</div>
+            <div class="text-[10px] sm:text-[11px] uppercase tracking-wider mt-0.5" style="color:var(--muted)">Tech Stack</div>
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="font-mono text-xl sm:text-2xl font-bold grad-text" data-count="30" data-suffix="+">0</div>
+            <div class="text-[10px] sm:text-[11px] uppercase tracking-wider mt-0.5" style="color:var(--muted)">Experiments</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT : visual -->
+      <div class="relative reveal" style="transition-delay:.12s">
+
+        <!-- Terminal -->
+        <div class="terminal relative z-10">
+          <div class="terminal-bar">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+            <span class="ml-2 font-mono text-[11px]" style="color:#7c869e">~/syhrllm/index.js</span>
+            <button type="button" id="copyCodeBtn" class="ml-auto grid place-items-center w-7 h-7 rounded-md hover:bg-white/10 transition"
+                    aria-label="Salin kode terminal" title="Copy code">
+              <i data-lucide="clipboard-copy" class="w-3.5 h-3.5" style="color:#7c869e"></i>
+            </button>
+          </div>
+          <div class="term-body" id="heroCode">
+            <div><span class="term-prompt">$</span> <span class="term-cmd">npm run vibe</span></div>
+            <div class="term-out">&gt; compiling ideas...</div>
+            <div><span class="term-prompt">const</span> <span style="color:#a78bfa">syhrllm</span> = {</div>
+            <div class="pl-4">role: <span style="color:#22d3ee">'Vibe Coder'</span>,</div>
+            <div class="pl-4">stack: [<span style="color:#22d3ee">'JS'</span>, <span style="color:#22d3ee">'Tailwind'</span>, <span style="color:#22d3ee">'AI'</span>],</div>
+            <div class="pl-4">mood: <span style="color:#22d3ee">'debugging'</span>,</div>
+            <div class="pl-4">coffee: <span style="color:#f472b6">Infinity</span></div>
+            <div>};</div>
+            <div class="mt-1"><span class="term-prompt">$</span> <span class="term-cmd">git commit -m "it works, don't touch it"</span></div>
+            <div class="term-ok">✓ 1 file changed, 0 regrets</div>
+            <div><span class="term-prompt">$</span> <span class="caret" aria-hidden="true"></span></div>
+          </div>
+        </div>
+
+        <!-- Floating cards -->
+        <div class="hidden sm:flex floaty absolute -top-6 -left-4 lg:-left-10 z-20 items-center gap-2.5 px-3.5 py-2.5 rounded-xl glass shadow-lg">
+          <span class="grid place-items-center w-8 h-8 rounded-lg" style="background:linear-gradient(130deg,#7c3aed,#0891b2)">
+            <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+          </span>
+          <div>
+            <div class="text-[11px] font-bold leading-tight">AI Assisted</div>
+            <div class="text-[10px] font-mono" style="color:var(--muted)">prompt → code</div>
+          </div>
+        </div>
+
+        <div class="hidden sm:flex floaty-delay absolute -bottom-6 -right-2 lg:-right-8 z-20 items-center gap-2.5 px-3.5 py-2.5 rounded-xl glass shadow-lg">
+          <span class="grid place-items-center w-8 h-8 rounded-lg bg-green-500/15">
+            <i data-lucide="bug" class="w-4 h-4 text-green-400"></i>
+          </span>
+          <div>
+            <div class="text-[11px] font-bold leading-tight">0 Bugs</div>
+            <div class="text-[10px] font-mono" style="color:var(--muted)">(probably)</div>
+          </div>
+        </div>
+
+        <div class="hidden md:flex floaty-slow absolute top-1/2 -right-6 lg:-right-14 z-20 flex-col gap-1 px-3 py-2.5 rounded-xl glass shadow-lg font-mono text-[10px]">
+          <div style="color:var(--muted)">build time</div>
+          <div class="font-bold" style="color:var(--accent2)">00:03:47</div>
+          <div class="w-full h-1 rounded-full overflow-hidden" style="background:var(--border)">
+            <div class="h-full w-3/4" style="background:linear-gradient(90deg,var(--accent1),var(--accent2))"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal mb-12">
+      <span class="font-mono text-xs tracking-[0.25em] uppercase" style="color:var(--accent2)">// 01 — about</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+        About <span class="grad-text">Me</span>
+      </h2>
+      <div class="divider-line mt-6"></div>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
+
+      <!-- Profile card -->
+      <div class="lg:col-span-4 reveal">
+        <div class="card p-6 sm:p-7 text-center">
+          <div class="relative mx-auto w-28 h-28 sm:w-32 sm:h-32 mb-5">
+            <div class="absolute inset-0 rounded-full blur-xl opacity-60"
+                 style="background:linear-gradient(130deg,#7c3aed,#0891b2)"></div>
+            <img src="https://i.ibb.co.com/8Wd1jqc/IMG-20260724-WA0011.jpg"
+                 alt="Foto profil Syhrllm"
+                 class="relative w-full h-full rounded-full object-cover"
+                 style="border:3px solid var(--surface-solid)"
+                 loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid';" />
+            <div class="relative w-full h-full rounded-full grid place-items-center font-black text-3xl sm:text-4xl text-white hidden"
+                 style="background:linear-gradient(140deg,#7c3aed,#6d28d9 45%,#0891b2);border:3px solid var(--surface-solid)">
+              SY
+            </div>
+            <span class="absolute bottom-1.5 right-1.5 w-5 h-5 rounded-full bg-green-400 border-[3px]"
+                  style="border-color:var(--surface-solid)" aria-hidden="true"></span>
+          </div>
+
+          <h3 class="text-xl font-bold">Syhrllm</h3>
+          <p class="font-mono text-xs mt-1" style="color:var(--accent2)">Vibe Coder &amp; Web Developer</p>
+
+          <div class="mt-5 flex items-center justify-center gap-2 px-3 py-2 rounded-lg glass">
+            <i data-lucide="loader" class="w-3.5 h-3.5 animate-spin" style="color:var(--accent1)"></i>
+            <span class="font-mono text-[11px]" style="color:var(--muted)">Currently building something... probably.</span>
+          </div>
+
+          <div class="mt-6 space-y-3 text-left">
+            <div class="flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg glass shrink-0"><i data-lucide="map-pin" class="w-4 h-4" style="color:var(--accent2)"></i></span>
+              <div class="min-w-0">
+                <div class="text-[10px] uppercase tracking-wider" style="color:var(--muted)">Location</div>
+                <div class="text-sm font-medium truncate">Indonesia</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg glass shrink-0"><i data-lucide="badge-check" class="w-4 h-4" style="color:var(--accent2)"></i></span>
+              <div class="min-w-0">
+                <div class="text-[10px] uppercase tracking-wider" style="color:var(--muted)">Role</div>
+                <div class="text-sm font-medium truncate">Vibe Coder / Web Developer</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg glass shrink-0"><i data-lucide="hourglass" class="w-4 h-4" style="color:var(--accent2)"></i></span>
+              <div class="min-w-0">
+                <div class="text-[10px] uppercase tracking-wider" style="color:var(--muted)">Experience</div>
+                <div class="text-sm font-medium truncate">Self-taught &amp; Project-based</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg glass shrink-0"><i data-lucide="target" class="w-4 h-4" style="color:var(--accent2)"></i></span>
+              <div class="min-w-0">
+                <div class="text-[10px] uppercase tracking-wider" style="color:var(--muted)">Current Focus</div>
+                <div class="text-sm font-medium truncate">AI Integration &amp; UI Experiments</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="lg:col-span-8 reveal" style="transition-delay:.1s">
+        <div class="card p-6 sm:p-8 h-full">
+          <div class="flex items-center gap-2 mb-5">
+            <i data-lucide="quote" class="w-5 h-5" style="color:var(--accent1)"></i>
+            <span class="font-mono text-xs" style="color:var(--muted)">about.md</span>
+          </div>
+
+          <div class="space-y-4 text-sm sm:text-base leading-relaxed" style="color:var(--muted)">
+            <p>
+              Saya <strong style="color:var(--text)">Syhrllm</strong>. Seorang vibe coder yang terkadang memulai project
+              dengan ide sederhana, lalu tiga jam kemudian sudah membuat fitur yang sebenarnya tidak direncanakan.
+            </p>
+            <p>
+              Saya suka membuat website, mengeksplorasi AI, bermain dengan UI, dan mencari tahu kenapa kode yang tadi
+              berjalan tiba-tiba memutuskan untuk tidak bekerja.
+            </p>
+            <p>
+              Bagi saya, coding bukan cuma soal menulis baris demi baris. Kadang dimulai dari rasa penasaran,
+              ditemani prompt, sedikit keberuntungan, dan satu cangkir kopi. Hasilnya sering kali bukan yang
+              direncanakan — tapi justru itu bagian yang menyenangkan.
+            </p>
+          </div>
+
+          <div class="mt-7 grid sm:grid-cols-3 gap-3">
+            <div class="p-4 rounded-xl glass">
+              <i data-lucide="wand-sparkles" class="w-5 h-5 mb-2" style="color:var(--accent1)"></i>
+              <div class="text-sm font-bold">Vibe Driven</div>
+              <div class="text-xs mt-1" style="color:var(--muted)">Mulai dari rasa penasaran, bukan dari requirement yang panjang.</div>
+            </div>
+            <div class="p-4 rounded-xl glass">
+              <i data-lucide="brain-circuit" class="w-5 h-5 mb-2" style="color:var(--accent2)"></i>
+              <div class="text-sm font-bold">AI Assisted</div>
+              <div class="text-xs mt-1" style="color:var(--muted)">AI sebagai partner berpikir, bukan pengganti proses belajar.</div>
+            </div>
+            <div class="p-4 rounded-xl glass">
+              <i data-lucide="ship" class="w-5 h-5 mb-2" style="color:var(--accent3)"></i>
+              <div class="text-sm font-bold">Ship It</div>
+              <div class="text-xs mt-1" style="color:var(--muted)">Selesai itu lebih baik daripada sempurna tapi nggak pernah rilis.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal mb-12">
+      <span class="font-mono text-xs tracking-[0.25em] uppercase" style="color:var(--accent2)">// 02 — skills</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+        Skill &amp; <span class="grad-text">Toolbox</span>
+      </h2>
+      <p class="mt-3 text-sm max-w-2xl" style="color:var(--muted)">
+        Beberapa hal yang saya pakai sehari-hari. Level di bawah ini jujur apa adanya — bukan angka karangan.
+      </p>
+      <div class="divider-line mt-6"></div>
+    </div>
+
+    <!-- Skill grid -->
+    <div id="skillsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12"></div>
+
+    <!-- Progress bars -->
+    <div class="reveal">
+      <div class="card p-6 sm:p-8">
+        <div class="flex items-center gap-2 mb-6">
+          <i data-lucide="activity" class="w-5 h-5" style="color:var(--accent2)"></i>
+          <h3 class="font-bold text-base">Proficiency</h3>
+          <span class="chip ml-auto hidden sm:inline-flex">
+            <i data-lucide="info" class="w-3 h-3"></i> self-assessed
+          </span>
+        </div>
+        <div id="skillBars" class="grid sm:grid-cols-2 gap-x-8 gap-y-5"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience" class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal mb-12">
+      <span class="font-mono text-xs tracking-[0.25em] uppercase" style="color:var(--accent2)">// 03 — journey</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+        Projects &amp; <span class="grad-text">Learning Journey</span>
+      </h2>
+      <p class="mt-3 text-sm max-w-2xl" style="color:var(--muted)">
+        Belum ada pengalaman kerja formal yang saya cantumkan di sini — jadi ini adalah perjalanan belajar dan
+        proses membangun project, dari nol sampai sekarang.
+      </p>
+      <div class="divider-line mt-6"></div>
+    </div>
+
+    <div id="timeline" class="timeline relative pl-10 md:pl-0 space-y-8"></div>
+
+  </div>
+</section>
+
+<!-- ================= VIBE CODING ================= -->
+<section id="vibe" class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal mb-12 text-center">
+      <span class="font-mono text-xs tracking-[0.25em] uppercase" style="color:var(--accent2)">// 04 — vibe coding</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+        How I <span class="grad-text">Code</span>
+      </h2>
+      <p class="mt-3 text-sm max-w-2xl mx-auto" style="color:var(--muted)">
+        Ini alur yang sebenarnya terjadi, bukan alur yang ada di tutorial.
+      </p>
+      <div class="divider-line mt-6"></div>
+    </div>
+
+    <div class="reveal">
+      <div class="card p-6 sm:p-8 lg:p-10">
+
+        <!-- Flow -->
+        <div id="flowContainer" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3"></div>
+
+        <!-- Progress line -->
+        <div class="mt-8 max-w-3xl mx-auto">
+          <div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border)">
+            <div id="flowProgress" class="h-full w-0 transition-all duration-500 ease-out"
+                 style="background:linear-gradient(90deg,var(--accent1),var(--accent2),var(--accent3))"></div>
+          </div>
+          <div class="flex justify-between mt-3 font-mono text-[10px]" style="color:var(--muted)">
+            <span>idea</span>
+            <span id="flowCounter">1 / 9</span>
+            <span>ship</span>
+          </div>
+        </div>
+
+        <!-- Quote -->
+        <div class="mt-9 max-w-2xl mx-auto text-center p-5 rounded-2xl glass">
+          <i data-lucide="quote" class="w-5 h-5 mx-auto mb-2" style="color:var(--accent1)"></i>
+          <p class="text-sm sm:text-base italic" style="color:var(--muted)">
+            "Tidak semua kode saya mengerti. Kadang kami hanya saling menghormati."
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CURRENTLY BUILDING ================= -->
+<section id="building" class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal mb-12">
+      <span class="font-mono text-xs tracking-[0.25em] uppercase" style="color:var(--accent2)">// 05 — status</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+        Currently <span class="grad-text">Building</span>
+      </h2>
+      <div class="divider-line mt-6"></div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+
+      <!-- Terminal -->
+      <div class="reveal">
+        <div class="terminal h-full">
+          <div class="terminal-bar">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+            <span class="ml-2 font-mono text-[11px]" style="color:#7c869e">syhrllm@dev — zsh</span>
+            <button type="button" id="copyTerminalBtn" class="ml-auto grid place-items-center w-7 h-7 rounded-md hover:bg-white/10 transition"
+                    aria-label="Salin isi terminal" title="Copy code">
+              <i data-lucide="clipboard-copy" class="w-3.5 h-3.5" style="color:#7c869e"></i>
+            </button>
+          </div>
+          <div class="term-body text-[13px]" id="terminalBlock">
+            <div class="mt-1"><span class="term-prompt">$</span> <span class="term-cmd">whoami</span></div>
+            <div class="term-out">Syhrllm</div>
+            <div class="mt-3"><span class="term-prompt">$</span> <span class="term-cmd">current_status</span></div>
+            <div class="term-out">building something...</div>
+            <div class="mt-3"><span class="term-prompt">$</span> <span class="term-cmd">mood</span></div>
+            <div class="term-out">probably debugging</div>
+            <div class="mt-3"><span class="term-prompt">$</span> <span class="term-cmd">coffee</span></div>
+            <div class="term-out">required</div>
+            <div class="mt-3"><span class="term-prompt">$</span> <span class="caret" aria-hidden="true"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info cards -->
+      <div class="reveal space-y-4" style="transition-delay:.1s">
+
+        <div class="card p-5 sm:p-6">
+          <div class="flex items-start gap-4">
+            <span class="grid place-items-center w-10 h-10 rounded-xl shrink-0" style="background:linear-gradient(130deg,#7c3aed,#0891b2)">
+              <i data-lucide="hammer" class="w-5 h-5 text-white"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="text-[11px] uppercase tracking-wider font-semibold" style="color:var(--muted)">Sedang Dikerjakan</div>
+              <div class="font-bold mt-1">Eksperimen UI &amp; integrasi AI</div>
+              <p class="text-xs mt-1.5" style="color:var(--muted)">
+                Membangun komponen antarmuka kecil dan menghubungkannya dengan berbagai API AI.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-5 sm:p-6">
+          <div class="flex items-start gap-4">
+            <span class="grid place-items-center w-10 h-10 rounded-xl shrink-0 bg-cyan-500/15">
+              <i data-lucide="graduation-cap" class="w-5 h-5" style="color:var(--accent2)"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="text-[11px] uppercase tracking-wider font-semibold" style="color:var(--muted)">Sedang Dipelajari</div>
+              <div class="font-bold mt-1">Arsitektur frontend &amp; prompt engineering</div>
+              <p class="text-xs mt-1.5" style="color:var(--muted)">
+                Menata struktur project yang lebih rapi, dan menulis prompt yang menghasilkan output lebih konsisten.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-5 sm:p-6">
+          <div class="flex items-start gap-4">
+            <span class="grid place-items-center w-10 h-10 rounded-xl shrink-0 bg-pink-500/15">
+              <i data-lucide="crosshair" class="w-5 h-5" style="color:var(--accent3)"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="text-[11px] uppercase tracking-wider font-semibold" style="color:var(--muted)">Current Focus</div>
+              <div class="font-bold mt-1">Kualitas UI &amp; pengalaman pengguna</div>
+              <p class="text-xs mt-1.5" style="color:var(--muted)">
+                Membuat antarmuka yang terasa enak dipakai, bukan cuma terlihat bagus di screenshot.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card p-5 sm:p-6">
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="flex items-center gap-2 text-xs font-semibold">
+              <span class="w-2 h-2 rounded-full bg-green-400 pulse-dot" aria-hidden="true"></span>
+              Coding status
+            </span>
+            <span class="chip"><i data-lucide="git-branch" class="w-3 h-3"></i> iterating</span>
+            <span class="chip"><i data-lucide="coffee" class="w-3 h-3"></i> caffeine powered</span>
+            <span class="chip"><i data-lucide="bug" class="w-3 h-3"></i> debugging</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= STATISTICS ================= -->
+<section id="stats" class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal mb-12 text-center">
+      <span class="font-mono text-xs tracking-[0.25em] uppercase" style="color:var(--accent2)">// 06 — numbers</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+        By The <span class="grad-text">Numbers</span>
+      </h2>
+      <p class="mt-3 text-sm max-w-xl mx-auto" style="color:var(--muted)">
+        Angka kasar sebagai gambaran sejauh mana saya sudah bereksperimen.
+      </p>
+      <div class="divider-line mt-6"></div>
+    </div>
+
+    <div id="statsGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"></div>
+
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal mb-12">
+      <span class="font-mono text-xs tracking-[0.25em] uppercase" style="color:var(--accent2)">// 07 — contact</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+        Let's <span class="grad-text">Talk</span>
+      </h2>
+      <p class="mt-3 text-sm max-w-2xl" style="color:var(--muted)">
+        Punya ide, project, atau cuma ingin ngobrol soal web dan AI? Kirim pesan lewat form di bawah.
+      </p>
+      <div class="divider-line mt-6"></div>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-6 lg:gap-8">
+
+      <!-- Info side -->
+      <div class="lg:col-span-5 reveal space-y-4">
+
+        <div class="card p-5 sm:p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="grid place-items-center w-10 h-10 rounded-xl" style="background:linear-gradient(130deg,#7c3aed,#0891b2)">
+              <i data-lucide="at-sign" class="w-5 h-5 text-white"></i>
+            </span>
+            <div class="min-w-0">
+              <div class="text-[11px] uppercase tracking-wider" style="color:var(--muted)">Email</div>
+              <div class="font-mono text-sm font-semibold truncate" id="emailText">syahrulkr75@gmail.com</div>
+            </div>
+          </div>
+          <button type="button" id="copyEmailBtn" class="btn btn-ghost w-full !text-xs">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            Copy Email
+          </button>
+        </div>
+
+        <div class="card p-5 sm:p-6">
+          <div class="flex items-center gap-2 mb-4">
+            <i data-lucide="share-2" class="w-4 h-4" style="color:var(--accent2)"></i>
+            <h3 class="text-sm font-bold">Social Links</h3>
+          </div>
+          <div id="socialGrid" class="grid grid-cols-1 gap-2.5"></div>
+        </div>
+
+      </div>
+
+      <!-- Form side -->
+      <div class="lg:col-span-7 reveal" style="transition-delay:.1s">
+        <div class="card p-6 sm:p-8">
+          <form id="contactForm" novalidate autocomplete="on">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-xs font-semibold mb-2">Nama <span style="color:var(--accent3)">*</span></label>
+                <input type="text" id="name" name="name" class="field" placeholder="Nama kamu" maxlength="80"
+                       autocomplete="name" aria-describedby="err-name" />
+                <span class="err-msg" id="err-name" role="alert"></span>
+              </div>
+              <div>
+                <label for="email" class="block text-xs font-semibold mb-2">Email <span style="color:var(--accent3)">*</span></label>
+                <input type="email" id="email" name="email" class="field" placeholder="nama@email.com" maxlength="120"
+                       autocomplete="email" aria-describedby="err-email" />
+                <span class="err-msg" id="err-email" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label for="subject" class="block text-xs font-semibold mb-2">Subject <span style="color:var(--accent3)">*</span></label>
+              <input type="text" id="subject" name="subject" class="field" placeholder="Mau ngobrolin apa?" maxlength="120"
+                     aria-describedby="err-subject" />
+              <span class="err-msg" id="err-subject" role="alert"></span>
+            </div>
+
+            <div class="mt-4">
+              <label for="message" class="block text-xs font-semibold mb-2">Message <span style="color:var(--accent3)">*</span></label>
+              <textarea id="message" name="message" rows="5" class="field resize-y" maxlength="1200"
+                        placeholder="Tulis pesan kamu di sini... (minimal 10 karakter)" aria-describedby="err-message"></textarea>
+              <div class="flex items-start justify-between gap-3">
+                <span class="err-msg" id="err-message" role="alert"></span>
+                <span class="err-msg text-right" id="charCount" style="color:var(--muted)">0 / 1200</span>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <button type="submit" class="btn btn-primary flex-1 sm:flex-none">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                Send Message
+              </button>
+              <button type="reset" class="btn btn-ghost">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="pt-14 pb-8" style="border-top:1px solid var(--border)">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+      <div class="lg:col-span-2">
+        <a href="#home" class="flex items-center gap-2.5 mb-4" aria-label="Syhrllm">
+          <span class="grid place-items-center w-9 h-9 rounded-xl text-white font-black text-sm"
+                style="background:linear-gradient(130deg,#7c3aed,#0891b2)">S</span>
+          <span class="font-mono font-bold text-lg">Syhrllm<span class="grad-text">.</span></span>
+        </a>
+        <p class="text-sm max-w-md leading-relaxed" style="color:var(--muted)">
+          Built with code, curiosity, and questionable amounts of debugging.
+        </p>
+      </div>
+
+      <nav aria-label="Navigasi footer">
+        <h3 class="text-xs font-bold uppercase tracking-wider mb-4" style="color:var(--muted)">Navigation</h3>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#home" class="hover:opacity-70 transition" style="color:var(--muted)">Home</a></li>
+          <li><a href="#about" class="hover:opacity-70 transition" style="color:var(--muted)">About</a></li>
+          <li><a href="#skills" class="hover:opacity-70 transition" style="color:var(--muted)">Skills</a></li>
+          <li><a href="#experience" class="hover:opacity-70 transition" style="color:var(--muted)">Experience</a></li>
+          <li><a href="#contact" class="hover:opacity-70 transition" style="color:var(--muted)">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-wider mb-4" style="color:var(--muted)">Social</h3>
+        <div id="footerSocial" class="flex flex-wrap gap-2"></div>
+      </div>
+    </div>
+
+    <div class="divider-line mb-6"></div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-center sm:text-left" style="color:var(--muted)">
+        &copy; <span id="year">2025</span> Syhrllm. All rights reserved.
+      </p>
+      <button type="button" id="footerTop" class="btn btn-ghost !text-xs !py-2.5" aria-label="Kembali ke atas">
+        <i data-lucide="arrow-up" class="w-4 h-4"></i>
+        Back to Top
+      </button>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= BACK TO TOP ================= -->
+<button type="button" id="backToTop"
+        class="fixed bottom-5 right-5 z-[70] grid place-items-center w-11 h-11 rounded-full text-white opacity-0 pointer-events-none transition-all duration-300"
+        style="background:linear-gradient(130deg,#7c3aed,#0891b2);box-shadow:0 10px 30px -10px var(--glow)"
+        aria-label="Kembali ke atas halaman">
+  <i data-lucide="arrow-up" class="w-5 h-5"></i>
+</button>
+
+<!-- ================= TOAST ================= -->
+<div id="toastWrap" aria-live="polite" aria-atomic="false"></div>
+
+<script>
+/* =========================================================
+   DATA — mudah diedit
+   ========================================================= */
+
+const CONFIG = {
+  email: 'syahrulkr75@gmail.com',
+  name: 'Syhrllm'
+};
+
+/* ---------- SOCIAL LINKS ---------- */
+/* Isi `url` dengan link asli. Jika null => tombol disabled (tidak ada link palsu). */
+const SOCIALS = [
+  { key: 'github',    label: 'GitHub',    icon: 'fa-brands fa-github',    url: 'https://github.com/syahrulkr7',        hint: 'github.com/syahrulkr7' },
+  { key: 'instagram', label: 'Instagram', icon: 'fa-brands fa-instagram', url: 'https://www.instagram.com/__sxyzz',    hint: 'instagram.com/__sxyzz' },
+  { key: 'tiktok',    label: 'TikTok',    icon: 'fa-brands fa-tiktok',    url: 'https://www.tiktok.com/@syhrlm_3',     hint: 'tiktok.com/@syhrlm_3' },
+  { key: 'whatsapp',  label: 'WhatsApp',  icon: 'fa-brands fa-whatsapp',  url: 'https://wa.me/6285872338969',          hint: 'wa.me/6285872338969' }
+];
+
+/* ---------- SKILLS ---------- */
+const SKILLS = [
+  { name: 'HTML',              level: 'Advanced',     value: 88, icon: 'fa-brands fa-html5',            color: '#e34f26' },
+  { name: 'CSS',               level: 'Advanced',     value: 85, icon: 'fa-brands fa-css3-alt',         color: '#2965f1' },
+  { name: 'JavaScript',        level: 'Intermediate', value: 72, icon: 'fa-brands fa-js',               color: '#f7df1e' },
+  { name: 'Tailwind CSS',      level: 'Advanced',     value: 86, icon: 'fa-solid fa-wind',              color: '#38bdf8' },
+  { name: 'UI/UX',             level: 'Intermediate', value: 74, icon: 'fa-solid fa-pen-ruler',         color: '#f472b6' },
+  { name: 'Responsive Design', level: 'Advanced',     value: 84, icon: 'fa-solid fa-mobile-screen',     color: '#a78bfa' },
+  { name: 'Git',               level: 'Intermediate', value: 70, icon: 'fa-brands fa-git-alt',          color: '#f05033' },
+  { name: 'API Integration',   level: 'Intermediate', value: 73, icon: 'fa-solid fa-plug',              color: '#34d399' },
+  { name: 'AI Integration',    level: 'Intermediate', value: 71, icon: 'fa-solid fa-microchip',         color: '#22d3ee' },
+  { name: 'Prompt Engineering',level: 'Intermediate', value: 76, icon: 'fa-solid fa-terminal',          color: '#818cf8' },
+  { name: 'Web Development',   level: 'Advanced',     value: 80, icon: 'fa-solid fa-code',              color: '#60a5fa' },
+  { name: 'Vibe Coding',       level: 'Advanced',     value: 95, icon: 'fa-solid fa-wand-magic-sparkles', color: '#c084fc' }
+];
+
+/* ---------- SKILL BARS ---------- */
+const SKILL_BARS = [
+  { name: 'HTML',            level: 'Advanced',     value: 88 },
+  { name: 'CSS',             level: 'Advanced',     value: 85 },
+  { name: 'JavaScript',      level: 'Intermediate', value: 72 },
+  { name: 'Tailwind CSS',    level: 'Advanced',     value: 86 },
+  { name: 'API Integration', level: 'Intermediate', value: 73 },
+  { name: 'AI Integration',  level: 'Intermediate', value: 71 }
+];
+
+/* ---------- EXPERIENCE / JOURNEY ---------- */
+const TIMELINE = [
+  {
+    phase: 'Phase 01',
+    title: 'Learning & Experimenting',
+    period: 'Awal mula',
+    icon: 'book-open',
+    description: 'Mulai dari rasa penasaran dengan cara kerja website. Belajar HTML dan CSS dari nol, mencoba berbagai hal kecil, dan sering kali merusak layout sendiri lalu memperbaikinya lagi.',
+    tags: ['HTML', 'CSS', 'Dasar Web']
+  },
+  {
+    phase: 'Phase 02',
+    title: 'Web Development',
+    period: 'Membangun pondasi',
+    icon: 'code-2',
+    description: 'Mulai membangun halaman yang benar-benar bisa dipakai. Belajar JavaScript, struktur DOM, penanganan event, dan bagaimana membuat tampilan yang rapi di berbagai ukuran layar.',
+    tags: ['JavaScript', 'DOM', 'Responsive']
+  },
+  {
+    phase: 'Phase 03',
+    title: 'AI Integration',
+    period: 'Menghubungkan ide',
+    icon: 'brain-circuit',
+    description: 'Bereksperimen menghubungkan aplikasi web dengan API AI. Belajar menangani request asinkron, mengelola state loading, dan menangani error yang tidak selalu jelas penyebabnya.',
+    tags: ['REST API', 'Fetch', 'LLM API']
+  },
+  {
+    phase: 'Phase 04',
+    title: 'Vibe Coding',
+    period: 'Menemukan cara kerja',
+    icon: 'wand-sparkles',
+    description: 'Menemukan ritme sendiri: mulai dari ide kecil, menulis prompt, mengecek hasilnya, memperbaiki yang salah, lalu mengulanginya. AI menjadi partner berpikir, bukan pengganti proses belajar.',
+    tags: ['Prompting', 'Workflow', 'Iterasi']
+  },
+  {
+    phase: 'Phase 05',
+    title: 'Building Personal Projects',
+    period: 'Sekarang',
+    icon: 'rocket',
+    description: 'Membangun project pribadi secara konsisten — mulai dari chatbot, landing page, sampai antarmuka e-commerce. Fokusnya sederhana: selesai, dipakai, lalu diperbaiki.',
+    tags: ['Project', 'Shipping', 'Iterasi']
+  }
+];
+
+/* ---------- STATISTICS ---------- */
+const STATISTICS = [
+  { label: 'Projects Built',    value: 10,  suffix: '+', icon: 'folder-code' },
+  { label: 'Technologies Used', value: 18,  suffix: '+', icon: 'layers' },
+  { label: 'Experiments',       value: 30,  suffix: '+', icon: 'flask-conical' },
+  { label: 'Lines of Code',     value: 50,  suffix: 'k+', icon: 'code-2' }
+];
+
+/* ---------- VIBE FLOW ---------- */
+const FLOW_STEPS = ['Idea', 'Prompt', 'Code', 'Error', 'Debug', 'Coffee', 'Fix', 'Why does this work?', 'Ship'];
+
+/* ---------- TYPING ROLES ---------- */
+const ROLES = ['Vibe Coder', 'Web Developer', 'UI Enthusiast', 'AI Explorer', 'Professional Bug Creator'];
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+const $  = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+/** Buat element dengan atribut aman (tanpa innerHTML dari input user) */
+function el(tag, attrs = {}, children = []) {
+  const node = document.createElement(tag);
+  Object.entries(attrs).forEach(([k, v]) => {
+    if (v === null || v === undefined || v === false) return;
+    if (k === 'class') node.className = v;
+    else if (k === 'text') node.textContent = v;
+    else if (k === 'html') node.innerHTML = v; // hanya untuk markup internal statis
+    else if (k.startsWith('data-') || k.startsWith('aria-') || k === 'role' || k === 'title') node.setAttribute(k, v);
+    else node.setAttribute(k, v);
+  });
+  (Array.isArray(children) ? children : [children]).forEach(c => {
+    if (c === null || c === undefined) return;
+    node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+  });
+  return node;
+}
+
+/** Sanitasi teks: hapus karakter kontrol & trim */
+function sanitizeText(str, maxLength = 2000) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/[\u0000-\u001F\u007F]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, maxLength);
+}
+
+/** Validasi email sederhana & aman */
+function isValidEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+  return re.test(String(email).trim()) && String(email).length <= 120;
+}
+
+/** Validasi URL eksternal (hanya http/https) */
+function isSafeUrl(url) {
+  if (typeof url !== 'string' || !url) return false;
+  try {
+    const parsed = new URL(url, window.location.origin);
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
+/** Refresh ikon Lucide dengan aman */
+function refreshIcons() {
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
+}
+
+/** Escape untuk keperluan atribut (bukan untuk innerHTML user) */
+function escapeAttr(str) {
+  return String(str).replace(/[&<>"']/g, m => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[m]));
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+function showToast(message, type = 'success') {
+  const wrap = $('#toastWrap');
+  if (!wrap) return;
+
+  const config = {
+    success: { icon: 'check-circle-2', color: '#4ade80' },
+    error:   { icon: 'alert-circle',   color: '#f87171' },
+    info:    { icon: 'info',           color: '#22d3ee' }
+  }[type] || { icon: 'info', color: '#22d3ee' };
+
+  const toast = el('div', { class: 'toast', role: 'status' });
+
+  const iconWrap = el('span', { class: 'shrink-0 mt-0.5' });
+  iconWrap.innerHTML = `<i data-lucide="${config.icon}" class="w-5 h-5" style="color:${config.color}"></i>`;
+
+  const body = el('div', { class: 'min-w-0 flex-1' });
+  body.appendChild(el('p', { class: 'text-sm font-medium leading-snug', text: String(message).slice(0, 240) }));
+
+  const closeBtn = el('button', {
+    type: 'button',
+    class: 'shrink-0 grid place-items-center w-6 h-6 rounded-md hover:bg-white/10 transition',
+    'aria-label': 'Tutup notifikasi'
+  });
+  closeBtn.innerHTML = '<i data-lucide="x" class="w-3.5 h-3.5"></i>';
+
+  toast.appendChild(iconWrap);
+  toast.appendChild(body);
+  toast.appendChild(closeBtn);
+  wrap.appendChild(toast);
+  refreshIcons();
+
+  requestAnimationFrame(() => toast.classList.add('show'));
+
+  let timer = setTimeout(dismiss, 3600);
+
+  function dismiss() {
+    clearTimeout(timer);
+    toast.classList.remove('show');
+    toast.classList.add('hide');
+    setTimeout(() => toast.remove(), 400);
+  }
+
+  closeBtn.addEventListener('click', dismiss);
+  toast.addEventListener('mouseenter', () => clearTimeout(timer));
+  toast.addEventListener('mouseleave', () => { timer = setTimeout(dismiss, 1800); });
+}
+
+
+/* =========================================================
+   THEME
+   ========================================================= */
+function saveTheme(theme) {
+  try { localStorage.setItem('syhrllm-theme', theme); } catch (e) { /* storage mungkin diblokir */ }
+}
+
+function loadTheme() {
+  let theme = null;
+  try { theme = localStorage.getItem('syhrllm-theme'); } catch (e) { theme = null; }
+
+  if (!theme) {
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    theme = prefersDark ? 'dark' : 'light';
+  }
+
+  applyTheme(theme);
+}
+
+function applyTheme(theme) {
+  const root = document.documentElement;
+  const icon = $('#themeIcon');
+  const btn = $('#themeToggle');
+
+  if (theme === 'dark') {
+    root.classList.add('dark');
+    if (icon) icon.setAttribute('data-lucide', 'sun');
+    if (btn) btn.setAttribute('aria-label', 'Aktifkan tema terang');
+  } else {
+    root.classList.remove('dark');
+    if (icon) icon.setAttribute('data-lucide', 'moon');
+    if (btn) btn.setAttribute('aria-label', 'Aktifkan tema gelap');
+  }
+  refreshIcons();
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.classList.contains('dark');
+  const next = isDark ? 'light' : 'dark';
+  applyTheme(next);
+  saveTheme(next);
+  showToast(next === 'dark' ? 'Dark mode aktif.' : 'Light mode aktif.', 'info');
+}
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+function toggleMobileMenu(forceState) {
+  const menu = $('#mobileMenu');
+  const overlay = $('#menuOverlay');
+  const toggle = $('#menuToggle');
+  if (!menu || !overlay || !toggle) return;
+
+  const shouldOpen = typeof forceState === 'boolean' ? forceState : !menu.classList.contains('open');
+
+  menu.classList.toggle('open', shouldOpen);
+  overlay.classList.toggle('open', shouldOpen);
+  toggle.setAttribute('aria-expanded', String(shouldOpen));
+  toggle.setAttribute('aria-label', shouldOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+  document.body.style.overflow = shouldOpen ? 'hidden' : '';
+
+  const icon = toggle.querySelector('i');
+  if (icon) icon.setAttribute('data-lucide', shouldOpen ? 'x' : 'menu');
+  refreshIcons();
+}
+
+
+/* =========================================================
+   SMOOTH SCROLL
+   ========================================================= */
+function scrollToSection(target) {
+  const selector = typeof target === 'string' ? target : null;
+  const node = selector ? document.querySelector(selector) : target;
+  if (!node) return;
+
+  const navHeight = 76;
+  const top = node.getBoundingClientRect().top + window.pageYOffset - navHeight;
+
+  window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+}
+
+
+/* =========================================================
+   NAVIGATION ACTIVE STATE
+   ========================================================= */
+function updateActiveNavigation() {
+  const sections = $$('section[id]');
+  const scrollPos = window.scrollY + 150;
+  let currentId = 'home';
+
+  sections.forEach(sec => {
+    if (scrollPos >= sec.offsetTop) currentId = sec.id;
+  });
+
+  // Jika sudah di dasar halaman, aktifkan contact
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 4) {
+    currentId = 'contact';
+  }
+
+  $$('[data-nav]').forEach(link => {
+    const href = link.getAttribute('href') || '';
+    const isActive = href === '#' + currentId;
+    link.classList.toggle('nav-active', isActive);
+
+    if (link.hasAttribute('data-mobile-link')) {
+      link.style.color = isActive ? 'var(--text)' : 'var(--muted)';
+      link.style.background = isActive ? 'var(--surface)' : 'transparent';
+    }
+  });
+}
+
+
+/* =========================================================
+   SCROLL EFFECTS
+   ========================================================= */
+function initScrollEffects() {
+  const progress = $('#scrollProgress');
+  const backToTop = $('#backToTop');
+  const navbar = $('#navbar');
+
+  function onScroll() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (progress) {
+      progress.style.width = pct.toFixed(2) + '%';
+      progress.setAttribute('aria-valuenow', Math.round(pct));
+    }
+
+    if (navbar) navbar.classList.toggle('scrolled', scrollTop > 12);
+
+    if (backToTop) {
+      const visible = scrollTop > 520;
+      backToTop.style.opacity = visible ? '1' : '0';
+      backToTop.style.pointerEvents = visible ? 'auto' : 'none';
+      backToTop.style.transform = visible ? 'translateY(0)' : 'translateY(14px)';
+    }
+
+    updateActiveNavigation();
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+function initScrollReveal() {
+  const items = $$('.reveal, .reveal-scale');
+  if (!items.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(i => i.classList.add('in'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  items.forEach(item => observer.observe(item));
+}
+
+
+/* =========================================================
+   TYPING ANIMATION
+   ========================================================= */
+function initTypingAnimation() {
+  const target = $('#typedRole');
+  if (!target) return;
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  const TYPE_SPEED = 85;
+  const DELETE_SPEED = 42;
+  const HOLD_TIME = 1500;
+
+  function tick() {
+    const current = ROLES[roleIndex];
+
+    if (!deleting) {
+      charIndex++;
+      target.textContent = current.slice(0, charIndex);
+      if (charIndex === current.length) {
+        deleting = true;
+        setTimeout(tick, HOLD_TIME);
+        return;
+      }
+      setTimeout(tick, TYPE_SPEED);
+    } else {
+      charIndex--;
+      target.textContent = current.slice(0, charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % ROLES.length;
+        setTimeout(tick, 320);
+        return;
+      }
+      setTimeout(tick, DELETE_SPEED);
+    }
+  }
+
+  setTimeout(tick, 700);
+}
+
+
+/* =========================================================
+   COUNTERS
+   ========================================================= */
+function animateCounters() {
+  const counters = $$('[data-count]');
+  if (!counters.length) return;
+
+  counters.forEach(counter => {
+    if (counter.dataset.done === 'true') return;
+    counter.dataset.done = 'true';
+
+    const target = parseInt(counter.getAttribute('data-count'), 10) || 0;
+    const suffix = counter.getAttribute('data-suffix') || '';
+    const duration = 1500;
+    const start = performance.now();
+
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.round(target * eased);
+      counter.textContent = value + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else counter.textContent = target + suffix;
+    }
+
+    requestAnimationFrame(step);
+  });
+}
+
+function initCounters() {
+  const grids = ['#statsGrid', '#home'];
+  const targets = grids.map(s => document.querySelector(s)).filter(Boolean);
+  if (!targets.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    animateCounters();
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  targets.forEach(t => observer.observe(t));
+}
+
+
+/* =========================================================
+   RENDER : SKILLS
+   ========================================================= */
+function renderSkills() {
+  const grid = $('#skillsGrid');
+  const barsWrap = $('#skillBars');
+  if (!grid || !barsWrap) return;
+
+  // Skill cards
+  grid.innerHTML = '';
+  SKILLS.forEach((skill, index) => {
+    const card = el('div', { class: 'card p-5 reveal', style: `transition-delay:${Math.min(index * 0.04, 0.4)}s` });
+
+    const head = el('div', { class: 'flex items-center gap-3 mb-3' });
+
+    const iconBox = el('span', { class: 'grid place-items-center w-10 h-10 rounded-xl shrink-0' });
+    iconBox.style.background = 'var(--surface)';
+    iconBox.style.border = '1px solid var(--border)';
+    iconBox.innerHTML = `<i class="${escapeAttr(skill.icon)} text-lg" style="color:${escapeAttr(skill.color)}" aria-hidden="true"></i>`;
+
+    const meta = el('div', { class: 'min-w-0 flex-1' });
+    meta.appendChild(el('h3', { class: 'text-sm font-bold truncate', text: skill.name }));
+    meta.appendChild(el('p', { class: 'text-[11px] font-mono', style: 'color:var(--muted)', text: skill.level }));
+
+    head.appendChild(iconBox);
+    head.appendChild(meta);
+
+    const bar = el('div', { class: 'skill-bar' });
+    const fill = el('div', { class: 'skill-fill', 'data-value': String(skill.value) });
+    bar.appendChild(fill);
+
+    card.appendChild(head);
+    card.appendChild(bar);
+    grid.appendChild(card);
+  });
+
+  // Skill bars (large)
+  barsWrap.innerHTML = '';
+  SKILL_BARS.forEach(item => {
+    const row = el('div');
+
+    const top = el('div', { class: 'flex items-center justify-between mb-2 gap-3' });
+    top.appendChild(el('span', { class: 'text-sm font-semibold truncate', text: item.name }));
+    top.appendChild(el('span', { class: 'text-[11px] font-mono shrink-0', style: 'color:var(--muted)', text: item.level }));
+
+    const bar = el('div', { class: 'skill-bar' });
+    const fill = el('div', { class: 'skill-fill', 'data-value': String(item.value) });
+    bar.appendChild(fill);
+
+    row.appendChild(top);
+    row.appendChild(bar);
+    barsWrap.appendChild(row);
+  });
+
+  refreshIcons();
+  initSkillBars();
+}
+
+function initSkillBars() {
+  const fills = $$('.skill-fill');
+  if (!fills.length) return;
+
+  function run() {
+    fills.forEach(fill => {
+      const value = parseInt(fill.getAttribute('data-value'), 10) || 0;
+      fill.style.width = Math.min(Math.max(value, 0), 100) + '%';
+    });
+  }
+
+  if (!('IntersectionObserver' in window)) { run(); return; }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        run();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+
+  const section = $('#skills');
+  if (section) observer.observe(section);
+}
+
+
+/* =========================================================
+   RENDER : TIMELINE
+   ========================================================= */
+function renderTimeline() {
+  const wrap = $('#timeline');
+  if (!wrap) return;
+
+  wrap.innerHTML = '';
+
+  TIMELINE.forEach((item, index) => {
+    const row = el('div', { class: 'relative reveal' });
+    row.style.transitionDelay = Math.min(index * 0.08, 0.4) + 's';
+
+    // Dot
+    row.appendChild(el('span', { class: 'tl-dot', 'aria-hidden': 'true' }));
+
+    const isLeft = index % 2 === 0;
+
+    const grid = el('div', { class: 'md:grid md:grid-cols-2 md:gap-10 items-start' });
+
+    const card = el('div', { class: 'card p-5 sm:p-6 ml-0' });
+
+    const head = el('div', { class: 'flex items-start gap-3 mb-3' });
+    const iconBox = el('span', { class: 'grid place-items-center w-10 h-10 rounded-xl shrink-0' });
+    iconBox.style.background = 'linear-gradient(130deg,#7c3aed,#0891b2)';
+    iconBox.innerHTML = `<i data-lucide="${escapeAttr(item.icon)}" class="w-5 h-5 text-white"></i>`;
+    head.appendChild(iconBox);
+
+    const headMeta = el('div', { class: 'min-w-0' });
+    headMeta.appendChild(el('span', { class: 'font-mono text-[10px] uppercase tracking-wider', style: 'color:var(--accent2)', text: item.phase }));
+    headMeta.appendChild(el('h3', { class: 'text-base font-bold leading-tight mt-0.5', text: item.title }));
+    head.appendChild(headMeta);
+    card.appendChild(head);
+
+    card.appendChild(el('p', { class: 'text-sm leading-relaxed', style: 'color:var(--muted)', text: item.description }));
+
+    const tags = el('div', { class: 'flex flex-wrap gap-1.5 mt-4' });
+    item.tags.forEach(t => tags.appendChild(el('span', { class: 'chip', text: t })));
+    card.appendChild(tags);
+
+    if (isLeft) {
+      grid.appendChild(card);
+      grid.appendChild(el('div', { class: 'hidden md:block' }));
+    } else {
+      grid.appendChild(el('div', { class: 'hidden md:block' }));
+      grid.appendChild(card);
+    }
+
+    row.appendChild(grid);
+    wrap.appendChild(row);
+  });
+
+  refreshIcons();
+}
+
+
+/* =========================================================
+   RENDER : STATISTICS
+   ========================================================= */
+function renderStatistics() {
+  const grid = $('#statsGrid');
+  if (!grid) return;
+
+  grid.innerHTML = '';
+
+  STATISTICS.forEach((stat, index) => {
+    const card = el('div', { class: 'card p-5 sm:p-6 text-center reveal' });
+    card.style.transitionDelay = Math.min(index * 0.07, 0.3) + 's';
+
+    const iconBox = el('span', { class: 'grid place-items-center w-11 h-11 rounded-xl mx-auto mb-4' });
+    iconBox.style.background = 'linear-gradient(130deg,#7c3aed,#0891b2)';
+    iconBox.innerHTML = `<i data-lucide="${escapeAttr(stat.icon)}" class="w-5 h-5 text-white"></i>`;
+    card.appendChild(iconBox);
+
+    const num = el('div', {
+      class: 'font-mono text-3xl sm:text-4xl font-black grad-text',
+      'data-count': String(stat.value),
+      'data-suffix': stat.suffix,
+      text: '0' + stat.suffix
+    });
+    card.appendChild(num);
+
+    card.appendChild(el('div', {
+      class: 'text-[11px] uppercase tracking-wider mt-2 font-semibold',
+      style: 'color:var(--muted)',
+      text: stat.label
+    }));
+
+    grid.appendChild(card);
+  });
+
+  refreshIcons();
+}
+
+
+/* =========================================================
+   RENDER : VIBE FLOW
+   ========================================================= */
+let flowInterval = null;
+
+function renderFlow() {
+  const wrap = $('#flowContainer');
+  if (!wrap) return;
+
+  wrap.innerHTML = '';
+
+  FLOW_STEPS.forEach((step, index) => {
+    const chip = el('div', {
+      class: 'flow-step',
+      'data-step': String(index),
+      text: step
+    });
+    wrap.appendChild(chip);
+
+    if (index < FLOW_STEPS.length - 1) {
+      const arrow = el('i', { class: 'flow-arrow', 'aria-hidden': 'true' });
+      arrow.innerHTML = '<i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>';
+      wrap.appendChild(arrow);
+    }
+  });
+
+  refreshIcons();
+  startFlowAnimation();
+}
+
+function startFlowAnimation() {
+  const steps = $$('.flow-step');
+  const progress = $('#flowProgress');
+  const counter = $('#flowCounter');
+  if (!steps.length) return;
+
+  let current = 0;
+
+  function update() {
+    steps.forEach((s, i) => s.classList.toggle('active', i === current));
+
+    const pct = ((current + 1) / steps.length) * 100;
+    if (progress) progress.style.width = pct + '%';
+    if (counter) counter.textContent = (current + 1) + ' / ' + steps.length;
+
+    current = (current + 1) % steps.length;
+  }
+
+  update();
+
+  function start() {
+    if (flowInterval) return;
+    flowInterval = setInterval(update, 900);
+  }
+  function stop() {
+    clearInterval(flowInterval);
+    flowInterval = null;
+  }
+
+  const section = $('#vibe');
+  if (section && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) start();
+        else stop();
+      });
+    }, { threshold: 0.2 });
+    obs.observe(section);
+  } else {
+    start();
+  }
+}
+
+
+/* =========================================================
+   RENDER : SOCIALS
+   ========================================================= */
+function createSocialButton(social, variant = 'card') {
+  const available = isSafeUrl(social.url);
+
+  const btn = el('button', {
+    type: 'button',
+    class: variant === 'card'
+      ? 'flex items-center gap-3 w-full px-3.5 py-3 rounded-xl text-sm font-medium transition'
+      : 'grid place-items-center w-10 h-10 rounded-xl transition',
+    'aria-label': available ? `${social.label} Syhrllm` : `${social.label} — link belum tersedia`,
+    title: available ? social.label : `${social.label} — link belum tersedia`
+  });
+
+  if (variant === 'card') {
+    btn.style.background = 'var(--surface)';
+    btn.style.border = '1px solid var(--border)';
+    btn.style.color = available ? 'var(--text)' : 'var(--muted)';
+    btn.style.opacity = available ? '1' : '0.55';
+    btn.style.cursor = available ? 'pointer' : 'not-allowed';
+
+    const iconEl = el('i', { class: social.icon + ' text-base', 'aria-hidden': 'true' });
+    btn.appendChild(iconEl);
+    btn.appendChild(el('span', { class: 'flex-1 text-left truncate', text: social.label }));
+
+    const arrow = el('i', { class: 'shrink-0', 'aria-hidden': 'true' });
+    arrow.innerHTML = available
+      ? '<i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>'
+      : '<i data-lucide="lock" class="w-3.5 h-3.5"></i>';
+    btn.appendChild(arrow);
+
+    if (!available) {
+      btn.disabled = true;
+      btn.setAttribute('aria-disabled', 'true');
+    } else {
+      btn.addEventListener('click', () => window.open(social.url, '_blank', 'noopener,noreferrer'));
+    }
+  } else {
+    btn.style.background = 'var(--surface)';
+    btn.style.border = '1px solid var(--border)';
+    btn.style.opacity = available ? '1' : '0.5';
+
+    btn.innerHTML = `<i class="${escapeAttr(social.icon)} text-sm" aria-hidden="true"></i>`;
+
+    if (!available) {
+      btn.disabled = true;
+      btn.setAttribute('aria-disabled', 'true');
+    } else {
+      btn.addEventListener('click', () => window.open(social.url, '_blank', 'noopener,noreferrer'));
+    }
+  }
+
+  return btn;
+}
+
+function renderSocials() {
+  const grid = $('#socialGrid');
+  const footer = $('#footerSocial');
+
+  if (grid) {
+    grid.innerHTML = '';
+    SOCIALS.forEach(s => grid.appendChild(createSocialButton(s, 'card')));
+  }
+
+  if (footer) {
+    footer.innerHTML = '';
+    SOCIALS.forEach(s => footer.appendChild(createSocialButton(s, 'icon')));
+  }
+
+  refreshIcons();
+}
+
+
+/* =========================================================
+   COPY UTILITIES
+   ========================================================= */
+async function copyToClipboard(text) {
+  const value = String(text);
+
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(value);
+      return true;
+    }
+  } catch (e) { /* fallback di bawah */ }
+
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = value;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  } catch (e) {
+    return false;
+  }
+}
+
+function copyEmail() {
+  copyToClipboard(CONFIG.email).then(ok => {
+    if (ok) showToast('Email disalin: ' + CONFIG.email, 'success');
+    else showToast('Gagal menyalin email. Silakan salin manual.', 'error');
+  });
+}
+
+function copyCode(source) {
+  let text = '';
+
+  if (source === 'terminal') {
+    const block = $('#terminalBlock');
+    if (block) {
+      text = Array.from(block.childNodes)
+        .map(node => (node.textContent || '').trim())
+        .filter(Boolean)
+        .join('\n');
+    }
+  } else {
+    const block = $('#heroCode');
+    if (block) {
+      text = Array.from(block.childNodes)
+        .map(node => (node.textContent || '').trimEnd())
+        .filter(Boolean)
+        .join('\n');
+    }
+  }
+
+  if (!text) {
+    showToast('Tidak ada kode untuk disalin.', 'error');
+    return;
+  }
+
+  copyToClipboard(text).then(ok => {
+    if (ok) showToast('Kode berhasil disalin ke clipboard.', 'success');
+    else showToast('Gagal menyalin kode.', 'error');
+  });
+}
+
+
+/* =========================================================
+   CONTACT FORM
+   ========================================================= */
+function setFieldError(fieldId, message) {
+  const field = document.getElementById(fieldId);
+  const errEl = document.getElementById('err-' + fieldId);
+
+  if (field) field.classList.toggle('error', Boolean(message));
+  if (field) field.setAttribute('aria-invalid', message ? 'true' : 'false');
+  if (errEl) errEl.textContent = message || '';
+}
+
+function validateContactForm() {
+  const nameEl = $('#name');
+  const emailEl = $('#email');
+  const subjectEl = $('#subject');
+  const messageEl = $('#message');
+  if (!nameEl || !emailEl || !subjectEl || !messageEl) return { valid: false };
+
+  const name = sanitizeText(nameEl.value, 80);
+  const email = String(emailEl.value).trim().slice(0, 120);
+  const subject = sanitizeText(subjectEl.value, 120);
+  const message = messageEl.value.trim().slice(0, 1200);
+
+  let valid = true;
+
+  // Name
+  if (!name) {
+    setFieldError('name', 'Nama wajib diisi.');
+    valid = false;
+  } else if (name.length < 2) {
+    setFieldError('name', 'Nama minimal 2 karakter.');
+    valid = false;
+  } else {
+    setFieldError('name', '');
+  }
+
+  // Email
+  if (!email) {
+    setFieldError('email', 'Email wajib diisi.');
+    valid = false;
+  } else if (!isValidEmail(email)) {
+    setFieldError('email', 'Format email tidak valid.');
+    valid = false;
+  } else {
+    setFieldError('email', '');
+  }
+
+  // Subject
+  if (!subject) {
+    setFieldError('subject', 'Subject wajib diisi.');
+    valid = false;
+  } else if (subject.length < 3) {
+    setFieldError('subject', 'Subject minimal 3 karakter.');
+    valid = false;
+  } else {
+    setFieldError('subject', '');
+  }
+
+  // Message
+  if (!message) {
+    setFieldError('message', 'Message wajib diisi.');
+    valid = false;
+  } else if (message.length < 10) {
+    setFieldError('message', 'Message minimal 10 karakter.');
+    valid = false;
+  } else {
+    setFieldError('message', '');
+  }
+
+  return { valid, data: { name, email, subject, message } };
+}
+
+function submitContactForm(event) {
+  if (event) event.preventDefault();
+
+  const result = validateContactForm();
+
+  if (!result.valid) {
+    showToast('Periksa kembali form. Ada beberapa kolom yang belum benar.', 'error');
+
+    const firstError = document.querySelector('.field.error');
+    if (firstError) {
+      firstError.focus();
+      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return false;
+  }
+
+  const submitBtn = $('#contactForm button[type="submit"]');
+  const originalHTML = submitBtn ? submitBtn.innerHTML : '';
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Membuka email...';
+    refreshIcons();
+  }
+
+  // Susun mailto link
+  const { name, email, subject, message } = result.data;
+  const mailSubject = encodeURIComponent(`[Portfolio] ${subject}`);
+  const mailBody = encodeURIComponent(
+    `Halo Syhrllm,\n\n${message}\n\n---\nDari: ${name}\nEmail: ${email}`
+  );
+
+  const mailtoUrl = `mailto:${CONFIG.email}?subject=${mailSubject}&body=${mailBody}`;
+
+  // Buka aplikasi email default
+  setTimeout(() => {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalHTML;
+      refreshIcons();
+    }
+
+    // Redirect ke mail client
+    window.location.href = mailtoUrl;
+
+    showToast('Membuka aplikasi email kamu...', 'success');
+    showToast('Jika tidak terbuka, salin email: ' + CONFIG.email, 'info');
+
+    const form = $('#contactForm');
+    if (form) form.reset();
+    const counter = $('#charCount');
+    if (counter) counter.textContent = '0 / 1200';
+
+    ['name', 'email', 'subject', 'message'].forEach(id => setFieldError(id, ''));
+  }, 700);
+
+  return false;
+}
+
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+function initEventListeners() {
+  // Theme
+  const themeToggle = $('#themeToggle');
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+  // Mobile menu
+  const menuToggle = $('#menuToggle');
+  const menuClose = $('#menuClose');
+  const menuOverlay = $('#menuOverlay');
+
+  if (menuToggle) menuToggle.addEventListener('click', () => toggleMobileMenu());
+  if (menuClose) menuClose.addEventListener('click', () => toggleMobileMenu(false));
+  if (menuOverlay) menuOverlay.addEventListener('click', () => toggleMobileMenu(false));
+
+  // Smooth scroll for all anchor links
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    e.preventDefault();
+    scrollToSection(target);
+
+    // Close mobile menu if open
+    if (link.hasAttribute('data-mobile-link') || link.closest('#mobileMenu')) {
+      toggleMobileMenu(false);
+    }
+
+    // Update URL hash without jumping
+    if (history.replaceState) history.replaceState(null, '', href);
+  });
+
+  // Back to top
+  const backToTop = $('#backToTop');
+  const footerTop = $('#footerTop');
+  if (backToTop) backToTop.addEventListener('click', () => scrollToSection('#home'));
+  if (footerTop) footerTop.addEventListener('click', () => scrollToSection('#home'));
+
+  // Copy buttons
+  const copyEmailBtn = $('#copyEmailBtn');
+  const heroCopyEmail = $('#heroCopyEmail');
+  const copyCodeBtn = $('#copyCodeBtn');
+  const copyTerminalBtn = $('#copyTerminalBtn');
+
+  if (copyEmailBtn) copyEmailBtn.addEventListener('click', copyEmail);
+  if (heroCopyEmail) heroCopyEmail.addEventListener('click', copyEmail);
+  if (copyCodeBtn) copyCodeBtn.addEventListener('click', () => copyCode('hero'));
+  if (copyTerminalBtn) copyTerminalBtn.addEventListener('click', () => copyCode('terminal'));
+
+  // Download CV (belum ada file, jadi beri notifikasi jujur)
+  const downloadCvBtn = $('#downloadCvBtn');
+  if (downloadCvBtn) {
+    downloadCvBtn.addEventListener('click', () => {
+      showToast('CV belum tersedia untuk diunduh. Silakan hubungi lewat email dulu ya.', 'info');
+    });
+  }
+
+  // Contact form
+  const form = $('#contactForm');
+  if (form) {
+    form.addEventListener('submit', submitContactForm);
+
+    form.addEventListener('reset', () => {
+      ['name', 'email', 'subject', 'message'].forEach(id => setFieldError(id, ''));
+      const counter = $('#charCount');
+      if (counter) counter.textContent = '0 / 1200';
+    });
+
+    // Live validation on blur
+    ['name', 'email', 'subject', 'message'].forEach(id => {
+      const field = document.getElementById(id);
+      if (!field) return;
+
+      field.addEventListener('blur', () => {
+        const value = field.value.trim();
+        if (!value) return;
+
+        if (id === 'email' && !isValidEmail(value)) {
+          setFieldError('email', 'Format email tidak valid.');
+        } else if (id === 'message' && value.length < 10) {
+          setFieldError('message', 'Message minimal 10 karakter.');
+        } else {
+          setFieldError(id, '');
+        }
+      });
+
+      field.addEventListener('input', () => {
+        if (field.classList.contains('error')) setFieldError(id, '');
+      });
+    });
+
+    // Character counter
+    const messageEl = $('#message');
+    const charCount = $('#charCount');
+    if (messageEl && charCount) {
+      messageEl.addEventListener('input', () => {
+        charCount.textContent = messageEl.value.length + ' / 1200';
+      });
+    }
+  }
+
+  // Keyboard accessibility
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const menu = $('#mobileMenu');
+      if (menu && menu.classList.contains('open')) toggleMobileMenu(false);
+    }
+  });
+
+  // Resize: pastikan menu tertutup ketika layar besar
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth >= 1024) toggleMobileMenu(false);
+    }, 180);
+  });
+}
+
+
+/* ---------- Cursor glow (ringan, hanya perangkat dengan pointer presisi) ---------- */
+function initCursorGlow() {
+  const glow = $('#cursorGlow');
+  if (!glow) return;
+
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!finePointer) {
+    glow.style.display = 'none';
+    return;
+  }
+
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight / 2;
+  let currentX = targetX;
+  let currentY = targetY;
+  let rafId = null;
+
+  function loop() {
+    currentX += (targetX - currentX) * 0.12;
+    currentY += (targetY - currentY) * 0.12;
+    glow.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
+
+    if (Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
+      rafId = requestAnimationFrame(loop);
+    } else {
+      rafId = null;
+    }
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+    if (!rafId) rafId = requestAnimationFrame(loop);
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+  window.addEventListener('mouseenter', () => { glow.style.opacity = '.85'; });
+}
+
+
+/* ---------- Loader ---------- */
+function hideLoader() {
+  const loader = $('#loader');
+  if (!loader) return;
+  setTimeout(() => {
+    loader.classList.add('hide');
+    setTimeout(() => { loader.style.display = 'none'; }, 600);
+  }, 450);
+}
+
+
+/* ---------- Main init ---------- */
+function init() {
+  loadTheme();
+
+  // Render semua konten dari data object
+  renderSkills();
+  renderTimeline();
+  renderStatistics();
+  renderFlow();
+  renderSocials();
+
+  // Year
+  const yearEl = $('#year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  // Interaksi
+  initEventListeners();
+  initScrollEffects();
+  initScrollReveal();
+  initTypingAnimation();
+  initCounters();
+  initCursorGlow();
+
+  refreshIcons();
+  hideLoader();
+
+  // Update nav setelah render
+  setTimeout(updateActiveNavigation, 200);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+// Pastikan loader hilang walau ada resource yang lambat
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = $('#loader');
+    if (loader && !loader.classList.contains('hide')) hideLoader();
+    refreshIcons();
+  }, 300);
+});
+</script>
+</body>
+</html>
